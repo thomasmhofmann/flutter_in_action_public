@@ -60,7 +60,7 @@ class _PageContainerState extends State<PageContainer> {
           onPressed: _showSettingsPage,
           child: Text(
             AnimationUtil.temperatureLabels[settings.selectedTemperature],
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline5,
           )),
       settings: settings,
     );

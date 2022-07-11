@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SegmentedControl extends StatefulWidget {
-  final Key key;
   final List<String> segments;
   final onSelectionChanged;
   final bool editable;
@@ -9,7 +8,7 @@ class SegmentedControl extends StatefulWidget {
 
   SegmentedControl(
     this.segments, {
-    this.key,
+    key,
     this.onSelectionChanged,
     this.editable = true,
     this.initialSelectionIndex = 0,

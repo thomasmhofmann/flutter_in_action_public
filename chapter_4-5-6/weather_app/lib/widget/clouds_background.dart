@@ -9,6 +9,7 @@ class Clouds extends AnimatedWidget {
     this.isRaining = false,
   }) : super(key: key, listenable: animation);
 
+  @override
   Widget build(BuildContext context) {
     final Animation<Color> animation = listenable;
 
@@ -77,8 +78,10 @@ class CloudPainter extends CustomPainter {
         } else {
           rainDropOffsetYStart -= 7.0;
         }
-        canvas.drawLine(Offset(rainDropOffsetXStart, rainDropOffsetYStart),
-            Offset(rainDropOffsetXEnd, rainDropOffsetYStart + rainDropLength), cloudPaint);
+        canvas.drawLine(
+            Offset(rainDropOffsetXStart, rainDropOffsetYStart),
+            Offset(rainDropOffsetXEnd, rainDropOffsetYStart + rainDropLength),
+            cloudPaint);
       }
     }
   }

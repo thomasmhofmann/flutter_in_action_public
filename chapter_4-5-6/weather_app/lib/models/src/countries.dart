@@ -20,6 +20,7 @@ class Country {
       o.isoCode == isoCode &&
       o.name == name;
 
+  @override
   int get hashCode {
     var hash = 7;
     hash = 31 * hash + dialingCode.hashCode;
@@ -1529,7 +1530,7 @@ class Country {
 
   /// returns an country with the specified [isoCode] or ```null``` if
   /// none or more than 1 are found
-  static findByIsoCode(String isoCode) {
+  static Country findByIsoCode(String isoCode) {
     return ALL.singleWhere(
       (item) => item.isoCode == isoCode,
     );

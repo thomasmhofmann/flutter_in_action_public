@@ -6,7 +6,7 @@ import 'package:weather_app/styles.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  AppSettings settings = AppSettings();
+  var settings = AppSettings();
 
   // Don't allow landscape mode
   SystemChrome.setPreferredOrientations(
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = ThemeData(
-      fontFamily: "Cabin",
+      fontFamily: 'Cabin',
       primaryColor: AppColor.midnightSky,
       accentColor: AppColor.midnightCloud,
       primaryTextTheme: Theme.of(context).textTheme.apply(

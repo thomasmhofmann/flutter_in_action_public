@@ -218,7 +218,7 @@ class _ForecastPageState extends State<ForecastPage>
         children: <Widget>[
           ColorTransitionText(
             text: _weatherDescription,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline5,
             animation: _textColorTween.animate(_animationController),
           ),
           ColorTransitionText(
@@ -245,7 +245,7 @@ class _ForecastPageState extends State<ForecastPage>
           animation: _backgroundColorTween.animate(_animationController),
           title: ColorTransitionText(
             text: _forecastController.selectedHourlyTemperature.city.name,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline5,
             animation: _textColorTween.animate(_animationController),
           ),
           actionIcon: widget.settingsButton,
