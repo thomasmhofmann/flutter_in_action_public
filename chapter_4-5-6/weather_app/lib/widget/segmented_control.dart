@@ -23,7 +23,7 @@ class _SegmentedControlState extends State<SegmentedControl> {
   _SegmentedControlState();
   int selectedIndex;
 
-  handleSelect(int widgetNum) {
+  void handleSelect(int widgetNum) {
     setState(() => selectedIndex = widgetNum);
     widget.onSelectionChanged(widgetNum);
   }
@@ -42,13 +42,13 @@ class _SegmentedControlState extends State<SegmentedControl> {
     }
     var lastSegment = widget.segments?.last;
     if (lastSegment == null) return [];
-    List<Color> childBorders = [];
+    var childBorders = <Color>[];
 
     var selectedIndex = this.selectedIndex ?? widget.initialSelectionIndex;
 
-    List<Widget> segmentWidgets = [];
+    var segmentWidgets = <Widget>[];
     widget.segments.forEach((segment) {
-      int idx = widget.segments.indexOf(segment);
+      var idx = widget.segments.indexOf(segment);
 
       if (segment == lastSegment) {
         childBorders.add(Colors.transparent);
@@ -59,14 +59,19 @@ class _SegmentedControlState extends State<SegmentedControl> {
       segmentWidgets.add(
         Expanded(
           child: InkWell(
-            onTap: widget.editable ? () => handleSelect(widget.segments.indexOf(segment)) : null,
+            onTap: widget.editable
+                ? () => handleSelect(widget.segments.indexOf(segment))
+                : null,
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
               decoration: BoxDecoration(
-                color:
-                    selectedIndex == widget.segments.indexOf(segment) ? isEditable() : Colors.white,
+                color: selectedIndex == widget.segments.indexOf(segment)
+                    ? isEditable()
+                    : Colors.white,
                 border: Border(
-                    right: BorderSide(color: childBorders[idx]) // hide right border on last child
+                    right: BorderSide(
+                        color: childBorders[
+                            idx]) // hide right border on last child
                     ),
               ),
               child: Text(

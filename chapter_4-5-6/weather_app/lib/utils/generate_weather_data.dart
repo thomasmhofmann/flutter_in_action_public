@@ -9,10 +9,10 @@ import 'package:weather_app/models/src/weather.dart';
 /// Further more, it's tedious and contrived, and in real life you'd likely not care about
 /// creating complex fake data.
 class WeatherDataRepository {
-  DateTime _today = DateTime.now().toUtc();
+  final DateTime _today = DateTime.now().toUtc();
   DateTime startDateTime;
   DateTime dailyDate;
-  var _random = math.Random();
+  final _random = math.Random();
   List<City> cities = settings.allAddedCities;
 
   WeatherDataRepository() {
@@ -39,7 +39,8 @@ class WeatherDataRepository {
     final descriptions = WeatherDescription.values;
 
     // Used to generate a random weather description
-    var description = descriptions.elementAt(_random.nextInt(descriptions.length));
+    var description =
+        descriptions.elementAt(_random.nextInt(descriptions.length));
 
     // Used to ensure that it isn't "sunny" at night time, and vice versa.
     if (isNightTime && description == WeatherDescription.sunny) {
@@ -52,14 +53,15 @@ class WeatherDataRepository {
   }
 
   ForecastDay dailyForecastGenerator(City city, int low, int high) {
-    List<Weather> forecasts = [];
-    int runningMin = 555;
-    int runningMax = -555;
+    var forecasts = <Weather>[];
+    var runningMin = 555;
+    var runningMax = -555;
 
     for (var i = 0; i < 8; i++) {
       startDateTime = startDateTime.add(Duration(hours: 3));
       final temp = _random.nextInt(high);
-      WeatherDescription randomDescription = generateTimeAwareWeatherDescription(startDateTime);
+      var randomDescription =
+          generateTimeAwareWeatherDescription(startDateTime);
 
       final tempBuilder = Temperature(
         current: temp,
@@ -91,7 +93,7 @@ class WeatherDataRepository {
   }
 
   Forecast getTenDayForecast(City city) {
-    List<ForecastDay> tenDayForecast = [];
+    var tenDayForecast = <ForecastDay>[];
 
     List.generate(10, (int index) {
       tenDayForecast.add(dailyForecastGenerator(city, 2, 10));

@@ -18,7 +18,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
-  List<String> get temperatureOptions => Humanize.enumValues(TemperatureUnit.values);
+  List<String> get temperatureOptions =>
+      Humanize.enumValues(TemperatureUnit.values);
 
   void _handleCityActiveChange(bool b, City city) {
     setState(() {
@@ -28,7 +29,8 @@ class SettingsPageState extends State<SettingsPage> {
 
   void _handleTemperatureUnitChange(int selection) {
     setState(() {
-      widget.settings.selectedTemperature = TemperatureUnit.values.toList()[selection];
+      widget.settings.selectedTemperature =
+          TemperatureUnit.values.toList()[selection];
     });
   }
 
@@ -36,7 +38,8 @@ class SettingsPageState extends State<SettingsPage> {
     if (dir == DismissDirection.endToStart) {
       allAddedCities.removeWhere((city) => city == removedCity);
       if (widget.settings.activeCity == removedCity) {
-        widget.settings.activeCity = allAddedCities.firstWhere((city) => city.active);
+        widget.settings.activeCity =
+            allAddedCities.firstWhere((city) => city.active);
       }
     }
   }
@@ -61,12 +64,13 @@ class SettingsPageState extends State<SettingsPage> {
             Text('Temperature Unit'),
             SegmentedControl(
               temperatureOptions,
-              onSelectionChanged: (int selection) => _handleTemperatureUnitChange(selection),
+              onSelectionChanged: (int selection) =>
+                  _handleTemperatureUnitChange(selection),
             ),
             Divider(),
             ListTile(
               leading: Icon(Icons.add),
-              title: Text("Add new city"),
+              title: Text('Add new city'),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -86,10 +90,11 @@ class SettingsPageState extends State<SettingsPage> {
                 itemBuilder: (BuildContext context, int index) {
                   final city = allAddedCities[index];
                   return Dismissible(
-                    onDismissed: (DismissDirection dir) => _handleDismiss(dir, city),
+                    onDismissed: (DismissDirection dir) =>
+                        _handleDismiss(dir, city),
                     background: Container(
-                      child: Icon(Icons.delete_forever),
                       decoration: BoxDecoration(color: Colors.red[700]),
+                      child: Icon(Icons.delete_forever),
                     ),
                     key: ValueKey(city),
                     child: CheckboxListTile(

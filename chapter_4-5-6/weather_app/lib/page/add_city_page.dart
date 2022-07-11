@@ -15,7 +15,7 @@ class AddNewCityPage extends StatefulWidget {
 }
 
 class _AddNewCityPageState extends State<AddNewCityPage> {
-  City _newCity = City.fromUserInput();
+  final City _newCity = City.fromUserInput();
   bool _formChanged = false;
   bool _isDefaultFlag = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -43,7 +43,7 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add City",
+          'Add City',
           style: TextStyle(color: AppColor.textColorLight),
         ),
       ),
@@ -86,7 +86,7 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                   ),
                   validator: (String val) {
                     if (val.isEmpty) {
-                      return "Field cannot be left blank";
+                      return 'Field cannot be left blank';
                     }
                     return null;
                   },
@@ -104,7 +104,7 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Default city?"),
+                      Text('Default city?'),
                       Checkbox(
                         value: _isDefaultFlag,
                         onChanged: (val) {
@@ -125,7 +125,7 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: FlatButton(
                         textColor: Colors.red[400],
-                        child: Text("Cancel"),
+                        child: Text('Cancel'),
                         onPressed: () async {
                           if (await _onWillPop()) {
                             Navigator.of(context).pop(false);
@@ -136,7 +136,6 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: RaisedButton(
                       color: Colors.blue[400],
-                      child: Text("Submit"),
                       onPressed: _formChanged
                           ? () {
                               if (_formKey.currentState.validate()) {
@@ -148,6 +147,7 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                               }
                             }
                           : null,
+                      child: Text('Submit'),
                     ),
                   )
                 ],
@@ -183,17 +183,17 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
       builder: (BuildContext context) {
         return AlertDialog(
               content: Text(
-                  "Are you sure you want to abandon the form? Any changes will be lost."),
+                  'Are you sure you want to abandon the form? Any changes will be lost.'),
               actions: <Widget>[
                 FlatButton(
-                  child: Text("Cancel"),
                   onPressed: () => Navigator.of(context).pop(false),
                   textColor: Colors.black,
+                  child: Text('Cancel'),
                 ),
                 FlatButton(
-                  child: Text("Abandon"),
                   textColor: Colors.red,
                   onPressed: () => Navigator.pop(context, true),
+                  child: Text('Abandon'),
                 ),
               ],
             ) ??

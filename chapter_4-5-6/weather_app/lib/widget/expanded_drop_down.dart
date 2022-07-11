@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 /// input field, because it needs to be wrapped in an `Expanded`.
 class DropDownExpanded<T> extends FormField<T> {
   final bool isExpanded;
+  @override
   final initialValue;
 
   DropDownExpanded({
@@ -26,10 +27,11 @@ class DropDownExpanded<T> extends FormField<T> {
             initialValue: value,
             validator: validator,
             builder: (FormFieldState<T> field) {
-              final InputDecoration effectiveDecoration =
-                  decoration.applyDefaults(Theme.of(field.context).inputDecorationTheme);
+              final effectiveDecoration = decoration
+                  .applyDefaults(Theme.of(field.context).inputDecorationTheme);
               return InputDecorator(
-                decoration: effectiveDecoration.copyWith(errorText: field.errorText),
+                decoration:
+                    effectiveDecoration.copyWith(errorText: field.errorText),
                 isEmpty: value == null,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<T>(

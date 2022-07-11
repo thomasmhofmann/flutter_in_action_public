@@ -24,14 +24,15 @@ class ForecastAnimationState {
     this.cloudHorizontalOffsetPosition,
   });
 
-  factory ForecastAnimationState.stateForNextSelection(int hour, WeatherDescription condition) {
+  factory ForecastAnimationState.stateForNextSelection(
+      int hour, WeatherDescription condition) {
     var roundedInt = (3 * (hour / 3)).round();
     assert(roundedInt % 3 == 0);
 
-    double cloudOffsetPosition =
-        (condition == WeatherDescription.cloudy || condition == WeatherDescription.rain)
-            ? 0.0
-            : 1.2;
+    var cloudOffsetPosition = (condition == WeatherDescription.cloudy ||
+            condition == WeatherDescription.rain)
+        ? 0.0
+        : 1.2;
 
     switch (roundedInt) {
       case 0:

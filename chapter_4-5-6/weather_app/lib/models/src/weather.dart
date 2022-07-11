@@ -6,8 +6,10 @@ class Forecast {
 
   Forecast({this.city, this.days});
 
-  static ForecastDay getSelectedDayForecast(Forecast forecast, DateTime selectedDate) {
-    return forecast.days.firstWhere((ForecastDay d) => d.date.day == selectedDate.day);
+  static ForecastDay getSelectedDayForecast(
+      Forecast forecast, DateTime selectedDate) {
+    return forecast.days
+        .firstWhere((ForecastDay d) => d.date.day == selectedDate.day);
   }
 }
 
@@ -23,7 +25,8 @@ class ForecastDay {
       // 0 == midnight
       return self.hourlyWeather.last;
     }
-    return self.hourlyWeather.firstWhere((Weather w) => w.dateTime.hour >= hour);
+    return self.hourlyWeather
+        .firstWhere((Weather w) => w.dateTime.hour >= hour);
   }
 
   ForecastDay({this.hourlyWeather, this.date, this.min, this.max});
@@ -46,10 +49,10 @@ class Weather {
       this.weatherIcon});
 
   static Map<WeatherDescription, String> displayValues = {
-    WeatherDescription.clear: "Clear",
-    WeatherDescription.cloudy: "Cloudy",
-    WeatherDescription.rain: "Rain",
-    WeatherDescription.sunny: "Sunny",
+    WeatherDescription.clear: 'Clear',
+    WeatherDescription.cloudy: 'Cloudy',
+    WeatherDescription.rain: 'Rain',
+    WeatherDescription.sunny: 'Sunny',
   };
 }
 
