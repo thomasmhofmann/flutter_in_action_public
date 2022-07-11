@@ -42,7 +42,8 @@ class _PageContainerState extends State<PageContainer> {
         ),
         onSelected: (selection) {
           setState(() {
-            settings.activeCity = allAddedCities.firstWhere((city) => city.name == selection);
+            settings.activeCity =
+                allAddedCities.firstWhere((city) => city.name == selection);
           });
         },
         itemBuilder: (BuildContext context) {
@@ -56,11 +57,11 @@ class _PageContainerState extends State<PageContainer> {
         },
       ),
       settingsButton: FlatButton(
+          onPressed: _showSettingsPage,
           child: Text(
             AnimationUtil.temperatureLabels[settings.selectedTemperature],
-            style: Theme.of(context).textTheme.headline,
-          ),
-          onPressed: _showSettingsPage),
+            style: Theme.of(context).textTheme.headline3,
+          )),
       settings: settings,
     );
   }

@@ -31,7 +31,8 @@ class ForecastPage extends StatefulWidget {
   _ForecastPageState createState() => _ForecastPageState();
 }
 
-class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMixin {
+class _ForecastPageState extends State<ForecastPage>
+    with TickerProviderStateMixin {
   int activeTabIndex = 0;
   ForecastController _forecastController;
   AnimationController _animationController;
@@ -86,7 +87,8 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
     /// starting values for the _next_ animation cycle.)
     nextAnimationState = AnimationUtil.getDataForNextAnimationState(
       selectedDay: _forecastController.selectedDay,
-      currentlySelectedTimeOfDay: _forecastController.selectedHourlyTemperature.dateTime.hour,
+      currentlySelectedTimeOfDay:
+          _forecastController.selectedHourlyTemperature.dateTime.hour,
     );
 
     /// These methods build all the relevant objects
@@ -110,7 +112,8 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
     /// with the data from the _new_ values.
     /// This way, the data for the _next_ animation cycle
     /// is already loaded in.
-    _forecastController.selectedHourlyTemperature = ForecastDay.getWeatherForHour(
+    _forecastController.selectedHourlyTemperature =
+        ForecastDay.getWeatherForHour(
       _forecastController.selectedDay,
       nextSelectedHour,
     );
@@ -196,10 +199,11 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
       widget.settings.selectedTemperature,
       _forecastController.selectedHourlyTemperature,
     );
-    final _weatherDescription =
-        Humanize.weatherDescription(_forecastController.selectedHourlyTemperature);
+    final _weatherDescription = Humanize.weatherDescription(
+        _forecastController.selectedHourlyTemperature);
     final isRaining =
-        _forecastController.selectedHourlyTemperature.description == WeatherDescription.rain;
+        _forecastController.selectedHourlyTemperature.description ==
+            WeatherDescription.rain;
 
     final forecastContent = ForecastTableView(
       settings: widget.settings,
@@ -214,12 +218,12 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
         children: <Widget>[
           ColorTransitionText(
             text: _weatherDescription,
-            style: Theme.of(context).textTheme.headline,
+            style: Theme.of(context).textTheme.headline3,
             animation: _textColorTween.animate(_animationController),
           ),
           ColorTransitionText(
             text: _currentTemp,
-            style: Theme.of(context).textTheme.display3,
+            style: Theme.of(context).textTheme.displaySmall,
             animation: _textColorTween.animate(_animationController),
           ),
         ],
@@ -229,7 +233,8 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
     final timePickerRow = TimePickerRow(
       tabItems: Humanize.allHours(),
       forecastController: _forecastController,
-      onTabChange: (int selectedTabIndex) => _handleStateChange(selectedTabIndex),
+      onTabChange: (int selectedTabIndex) =>
+          _handleStateChange(selectedTabIndex),
       startIndex: activeTabIndex,
     );
 
@@ -240,7 +245,7 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
           animation: _backgroundColorTween.animate(_animationController),
           title: ColorTransitionText(
             text: _forecastController.selectedHourlyTemperature.city.name,
-            style: Theme.of(context).textTheme.headline,
+            style: Theme.of(context).textTheme.headline3,
             animation: _textColorTween.animate(_animationController),
           ),
           actionIcon: widget.settingsButton,
@@ -251,7 +256,8 @@ class _ForecastPageState extends State<ForecastPage> with TickerProviderStateMix
         onDoubleTap: () {
           setState(() {
             widget.settings.selectedTemperature == TemperatureUnit.celsius
-                ? widget.settings.selectedTemperature = TemperatureUnit.fahrenheit
+                ? widget.settings.selectedTemperature =
+                    TemperatureUnit.fahrenheit
                 : widget.settings.selectedTemperature = TemperatureUnit.celsius;
           });
         },

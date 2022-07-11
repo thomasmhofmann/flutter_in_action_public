@@ -61,13 +61,15 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                   onSaved: (String val) => _newCity.name = val,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    helperText: "Required",
-                    labelText: "City name",
+                    helperText: 'Required',
+                    labelText: 'City name',
                   ),
                   autofocus: true,
-                  autovalidate: _formChanged,
+                  autovalidateMode: _formChanged
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.disabled,
                   validator: (String val) {
-                    if (val.isEmpty) return "Field cannot be left blank";
+                    if (val.isEmpty) return 'Field cannot be left blank';
                     return null;
                   },
                 ),
@@ -79,8 +81,8 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
                   onSaved: (String val) => print(val),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    helperText: "Optional",
-                    labelText: "State or Territory name",
+                    helperText: 'Optional',
+                    labelText: 'State or Territory name',
                   ),
                   validator: (String val) {
                     if (val.isEmpty) {
@@ -180,7 +182,8 @@ class _AddNewCityPageState extends State<AddNewCityPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-              content: Text("Are you sure you want to abandon the form? Any changes will be lost."),
+              content: Text(
+                  "Are you sure you want to abandon the form? Any changes will be lost."),
               actions: <Widget>[
                 FlatButton(
                   child: Text("Cancel"),
